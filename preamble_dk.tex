@@ -1,0 +1,25 @@
+% Input common definition
+\input{preamble_base.tex}
+
+% Encoding and hyphenation
+
+% Basics: font, codec etc.
+\usepackage[danish]{babel}                        % babel is for hyphenation and other goodies
+\renewcommand{\danishhyphenmins}{22}              % even better danish hyphenation!
+
+% .bib danish redefinition for author in title
+\renewcommand\Authand{ og }
+\renewcommand\Authands{, og }
+\renewcommand\Affilfont{\small}
+
+% Logic and proofs
+% Theorem environments
+\newtheorem{theorem}{Sætning}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Korollar}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{conjecture}[theorem]{Formodning}
+\newtheorem{observation}[theorem]{Observation}
+\newtheorem{remark}[theorem]{Remark}
+\renewcommand*{\proofname}{Bevis}
