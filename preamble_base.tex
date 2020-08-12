@@ -6,6 +6,7 @@
 
 % Tables and figures
 \usepackage{tabularx,booktabs,authblk}
+\usepackage{framed}
 
 % Figures and captions
 \usepackage{caption}
@@ -54,11 +55,13 @@
 \usepackage{cancel}
 
 \usepackage{amssymb}
-\usepackage[utopia]{mathdesign}
+% \usepackage[utopia]{mathdesign}
 \usepackage{stmaryrd}
 \DeclareMathAlphabet{\mathpzc}{OT1}{pzc}{m}{it} 
 
 % Math shortcuts
+\renewcommand{\implies}{\Rightarrow}
+\renewcommand{\iff}{\Leftrightarrow}
 \renewcommand{\d}{\, \mathrm{d}}                               % \d = differential d with a bit of spacing
 \newcommand{\e}{\mathrm{e}}                                    % \e = eulers number
 \newcommand{\R}{\mathbb{R}}                                    % \R = Real numbers
@@ -91,7 +94,7 @@
 \usepackage{amsthm}                                % Theorem package
 \theoremstyle{definition}                          % plain, definition, remark
 \usepackage{lplfitch}                              % fitch style proofs
-\usepackage{bussproofs}                            % proof trees
+%\usepackage{bussproofs}                            % proof trees
 %\usepackage{logicproof}                           % alternative package, resembling the dBerLog book
 %\setlength\subproofhorizspace{2em}                % Indent for subproofs. Changed for fresh variables
 
@@ -123,7 +126,7 @@
 % Definition of Pseudocode
 \lstdefinelanguage{pseudocode}{
   keywords=[1]{
-           break, break, by, do, downto, else, error, for, if, let, repeat, return, then, to, until, while, while
+           procedure, break, break, by, do, downto, else, error, for, if, let, repeat, return, then, to, until, while, while, end
       },                                           % list of keywords, first and last are not used for some stupid reason
   keywords=[2]{
         and, and, or, NIL, NIL
@@ -153,26 +156,10 @@
   tabsize=4                                        % tab width
 }
 
-% lstlisting - Colors, font and styling
 \lstset{
-  stepnumber=1,                                       % step between to line-numbers. 1 = each line is numbered
-  numbers=left,                                       % numbering: none, left, right
-  numbersep=5pt,                                      % distance between linenumbers and code
-  numberstyle=\color{lstComment},                     % change style of numbering - currently grey.
-  columns=[c]fixed,                                   % makes it monospaced
-  basicstyle=\ttfamily \color{lstBase},  % set basic color
-  commentstyle=\color{lstComment},                    % set color of comments
-  keywordstyle=[1]\color{lstKey},                     % set color of primary keywords
-  keywordstyle=[2]\color{lstKey2},                    % set color of secondary keywords
-  stringstyle=\color{lstString},                      % set color of strings
+  xleftmargin= .05\textwidth,                       % leftmargin being 10% of the current width
+  xrightmargin= .05\textwidth,                      % right margin also 10%
 }
-
-% lstlisting - Put it beautifully in the middle
-% Currently off, since captions are misbehaving
-% \lstset{
-%   xleftmargin= .1\textwidth,                       % leftmargin being 10% of the current width
-%   xrightmargin= .1\textwidth,                      % right margin also 10%
-% }
 
 % lstlisting - Minimalistic borders and captions
 \lstset{
@@ -182,6 +169,25 @@
 }
 \DeclareCaptionFormat{listing}{\makebox[0.5in][l]{#1#2}\parbox[t]{\dimexpr \captionwidth-0.5in}{#3}\hline}
 \captionsetup[lstlisting]{format=listing, singlelinecheck=off, labelsep=colon}
+
+% protocol
+\usepackage{environ}
+\usepackage{newfloat}
+\DeclareFloatingEnvironment[
+    name=Protocol,
+    placement=htbp!,
+]{protocolenv}
+
+\NewEnviron{protocol}[2]  
+    {\begin{protocolenv}%
+        \begin{framed}%
+          \BODY%
+        \end{framed}%
+        \caption{#1}\label{prot:#2}%
+     \end{protocolenv}}
+
+% TODO
+\newcommand{\TODO}{{\large \color{red} \textit{TODO}}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %      Title and information       %
@@ -220,6 +226,7 @@
      }
 }
 
+
 \date{\today}
 
 \fancyhead[RO]{\thepage}
@@ -231,3 +238,7 @@
 
 %Nothing below
 \fancyfoot[LCR]{}
+
+% misc.
+\usepackage{float}
+\usepackage{enumitem}
